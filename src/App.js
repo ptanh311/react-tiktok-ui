@@ -6,7 +6,7 @@ import { DefaultLayout } from '~/components/Layout';
 function App() {
     return (
             <Router>
-                <div className="App">
+                {/* <div className="App">
                     <Link to="/">Home</Link>
                     <br />
                     <Link to="/following">Following</Link>
@@ -14,7 +14,7 @@ function App() {
                     <Link to="/profile">Profile</Link>
                     <br />
                     <Link to="/upload">Upload</Link>
-                </div>
+                </div> */}
                     <Routes>
                         {publicRoutes.map((route, index) => {
                             let Layout = DefaultLayout;
