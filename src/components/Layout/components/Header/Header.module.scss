@@ -12,6 +12,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 var(--default-layout-horizontal-spacer);
 }
 
 .search {
@@ -60,6 +61,7 @@
     border-bottom-right-radius: 92px;
     padding-right: 6px;
     cursor: pointer;
+    background-color: transparent;
 
     &:hover {
         background-color: #16182308;
@@ -82,6 +84,7 @@
     top: 50%;
     transform: translateY(-50%);
     right: 60px;
+    background-color: transparent;
 }
 
 .loading {
@@ -101,4 +104,37 @@
     color: #16182380;
     font-weight: 500;
     margin-left: 12px;
+}
+
+// Right Area - Action
+
+.action {
+    display: flex;
+    align-items: center;
+}
+
+.more-btn {
+    display: inline-block;
+    font-size: 1.8rem;
+    margin-left: 28px;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+// When user login
+
+.user-img {
+    margin-left: 24px;
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.action-btn {
+    font-size: 2rem;
+    padding: 4px;
+    margin-left: 16px;
+    cursor: pointer;
 }

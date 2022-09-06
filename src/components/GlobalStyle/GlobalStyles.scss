@@ -4,15 +4,19 @@
 :root {
     --primary: #fe2c55;
     --black: #000;
+    --white: #fff;
+    --text-color: #161823;
     // Default Layout
     --default-layout-header-height: 60px;
     --default-layout-width-content: 1150px;
+    --default-layout-horizontal-spacer: 24px;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: inherit;
 }
 
 html {
@@ -24,4 +28,38 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
+}
+
+button,
+input,
+[tabindex] {
+    border: none;
+    outline: none;
+    background-color: var(--white);
+}
+
+a[href] {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+// Tippy UI override
+
+body {
+    .tippy-box {
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+        background-color: #545454EB;
+    }
+    .tippy-arrow {
+        color: #545454EB;
+    }
+    .tippy-box[data-placement^=bottom]>.tippy-arrow:before {
+        top: -8px;
+    }
+    .tippy-content {
+        padding: 8px 9px;
+    }
 }
