@@ -1,3 +1,6 @@
-export { ReactComponent as Logo } from './logo.svg';
-export { ReactComponent as CloseButton } from './close_button.svg';
-export { ReactComponent as SearchIcon } from './search_icon.svg';
+export { Inbox } from './inbox.js';
+export { Messages } from './messages.js';
+export { Logo } from './logo.js';
+export { CloseButton } from './close_button.js';
+export { SearchIcon } from './search_icon.js';
+export { default as NoImage } from './NoImage.png';
