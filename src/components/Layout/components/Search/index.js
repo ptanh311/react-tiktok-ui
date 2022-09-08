@@ -4,62 +4,39 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
+import { useDebounce } from '~/Hooks';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import styles from './Search.module.scss';
 import { CloseButton, SearchIcon } from '~/assets/image';
+import searchApi from '~/apiService/search';
 
 const cx = classNames.bind(styles);
-
-const accItemTest = [
-    {
-        avatar: '',
-        name: 'Nguyen Van Hoa',
-        userName: 'NguyenVanHoa',
-    },
-    {
-        avatar: '',
-        name: 'Pham Nhu Hoa',
-        userName: 'PhamNhuHoa',
-    },
-    {
-        avatar: '',
-        name: 'Nguyen Thi Hoa',
-        userName: 'NguyenThiHoa',
-    },
-    {
-        avatar: '',
-        name: 'Tran Quynh Hoa',
-        userName: 'TranQuynhHoa',
-    },
-];
 
 function Search() {
     const [searchResult, setSearchResult] = useState([]);
     const [input, setInput] = useState('');
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
+    const debounced = useDebounce(input, 500);
 
     const inpRef = useRef('');
 
     useEffect(() => {
-        if (!input.trim()) {
+        if (!debounced.trim()) {
             setSearchResult([]);
             return;
         }
-        setLoading(true);
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(input)}&type=less`)
-            .then((result) => {
-                return result.json();
-            })
-            .then((data) => {
-                setLoading(false);
-                setSearchResult(data.data);
-            })
-            .catch(() => {
-                setLoading(false);
-            })
-    }, [input]);
+        
+        const handleFetch = async () => {
+            setLoading(true);
+            const result = await searchApi(debounced);
+            setSearchResult(result.data);
+            setLoading(false);
+        }
+        handleFetch();
+
+    }, [debounced]);
 
     const handleClose = () => {
         setInput('');
