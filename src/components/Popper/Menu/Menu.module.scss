@@ -36,6 +36,11 @@
     justify-content: center;
     height: 50px;
     margin-top: -8px;
+    flex-shrink: 0;
+}
+
+.menu-body {
+    overflow-y: auto;
 }
 
 .back-btn {

@@ -6,6 +6,7 @@ import Tippy from "@tippyjs/react";
 import 'tippy.js/dist/tippy.css';
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faTiktok } from "@fortawesome/free-brands-svg-icons";
+import { Link } from 'react-router-dom';
 
 import styles from "./Header.module.scss";
 import { Logo, Messages, Inbox } from '~/assets/image';
@@ -13,6 +14,7 @@ import Button from "~/components/Button";
 import Menu from "~/components/Popper/Menu";
 import Image from "~/components/Image";
 import Search from "../Search";
+import routesConfig from "~/config/routes";
 
 const MENU_ITEMS = [
     {
@@ -41,7 +43,7 @@ const MENU_ITEMS = [
                 {
                     code: 'vi',
                     title: 'Tiếng Việt',
-                },
+                }
             ],
         },
     },
@@ -94,9 +96,11 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <Logo />
+                    <Link to={routesConfig.home} className={cx('logo-link')}>
+                        <Logo />
+                    </Link>
                 </div>
-                
+
                 {/* Search */}
                 <Search />
 

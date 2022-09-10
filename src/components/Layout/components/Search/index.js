@@ -48,49 +48,61 @@ function Search() {
         setShowResult(false);
     }
 
+    const handleChange = (e) => {
+        const searchValue = e.target.value;
+        if(!searchValue.startsWith(" ")) {
+            setInput(searchValue);
+        }
+    };
+
     return (
-        <HeadlessTippy
-            onClickOutside={handleHideResult}
-            interactive
-            visible={showResult && searchResult.length > 0}
-            render={(attrs) => (
-                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>
-                        <h4 className={cx('search-title')}>Accounts</h4>
-                        {searchResult.map((result, index) => {
-                            return <AccountItem key={index} data={result} />;
-                        })}
-                    </PopperWrapper>
-                </div>
-            )}
-        >
-            <div className={cx('search')}>
-                <input
-                    ref={inpRef}
-                    className={cx('input')}
-                    placeholder="Search accounts and videos"
-                    spellCheck={false}
-                    value={input}
-                    onChange={(e) => {
-                        setInput(e.target.value);
-                    }}
-                    onFocus={() => setShowResult(true)}
-                />
-                {input && !loading && (
-                    <button className={cx('clear-btn')}>
-                        <CloseButton onClick={handleClose} />
-                    </button>
+        // Using a wrap <div> or <span> to solve the tippy's warning
+        // about a keyboard navigation action can't perform without a wrap.
+        <div>
+            <HeadlessTippy
+                onClickOutside={handleHideResult}
+                interactive
+                visible={showResult && searchResult.length > 0}
+                render={(attrs) => (
+                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                        <PopperWrapper>
+                            <h4 className={cx('search-title')}>Accounts</h4>
+                            {searchResult.map((result, index) => {
+                                return <AccountItem key={index} data={result} />;
+                            })}
+                        </PopperWrapper>
+                    </div>
                 )}
-                {
-                    loading &&
-                    <FontAwesomeIcon className={cx('loading')} icon={faCircleNotch} />
-                }
-                <span className={cx('separate')}></span>
-                <button className={cx('search-btn')}>
-                    <SearchIcon />
-                </button>
-            </div>
-        </HeadlessTippy>
+            >
+                <div className={cx('search')}>
+                    <input
+                        ref={inpRef}
+                        className={cx('input')}
+                        placeholder="Search accounts and videos"
+                        spellCheck={false}
+                        value={input}
+                        onChange={handleChange}
+                        onFocus={() => setShowResult(true)}
+                    />
+                    {input && !loading && (
+                        <button className={cx('clear-btn')}>
+                            <CloseButton onClick={handleClose} />
+                        </button>
+                    )}
+                    {
+                        loading &&
+                        <FontAwesomeIcon className={cx('loading')} icon={faCircleNotch} />
+                    }
+                    <span className={cx('separate')}></span>
+                    <button 
+                        className={cx('search-btn')}
+                        onMouseDown={e => e.preventDefault()}
+                    >
+                        <SearchIcon />
+                    </button>
+                </div>
+            </HeadlessTippy>
+        </div>
     );
 }
 

@@ -9,7 +9,7 @@ import { useState } from "react";
 const cx = classNames.bind(styles);
 const defaultFn = () => {};
 
-function Menu({ children, items = [], onChange = defaultFn }) {
+function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn }) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
 
@@ -38,6 +38,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
             delay={[0, 700]}
             offset={[12, 8]}
             interactive
+            hideOnClick={hideOnClick}
             placement="bottom-end"
             onHide={() => {
                 setHistory(prev => prev.slice(0, 1));
@@ -56,7 +57,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
                                 }}
                             />
                         )}
-                        {renderItem(items)}
+                        <div className={cx('menu-body')}>{renderItem(items)}</div>
                     </PopperWrapper>
                 </div>
             )}
