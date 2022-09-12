@@ -6,10 +6,10 @@ import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 import { useDebounce } from '~/Hooks';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
-import AccountItem from '~/components/AccountItem';
 import styles from './Search.module.scss';
 import { CloseButton, SearchIcon } from '~/assets/image';
 import searchApi from '~/services/searchService';
+import RenderResult from './RenderResult';
 
 const cx = classNames.bind(styles);
 
@@ -18,25 +18,26 @@ function Search() {
     const [input, setInput] = useState('');
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
-    const debounced = useDebounce(input, 500);
+
+    const debouncedValue = useDebounce(input, 500);
 
     const inpRef = useRef('');
 
     useEffect(() => {
-        if (!debounced.trim()) {
+        if (!debouncedValue.trim()) {
             setSearchResult([]);
             return;
         }
         
         const handleFetch = async () => {
             setLoading(true);
-            const result = await searchApi(debounced);
+            const result = await searchApi(debouncedValue);
             setSearchResult(result.data);
             setLoading(false);
         }
         handleFetch();
 
-    }, [debounced]);
+    }, [debouncedValue]);
 
     const handleClose = () => {
         setInput('');
@@ -67,9 +68,7 @@ function Search() {
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <PopperWrapper>
                             <h4 className={cx('search-title')}>Accounts</h4>
-                            {searchResult.map((result, index) => {
-                                return <AccountItem key={index} data={result} />;
-                            })}
+                            <RenderResult searchResult={searchResult} />
                         </PopperWrapper>
                     </div>
                 )}
@@ -89,15 +88,9 @@ function Search() {
                             <CloseButton onClick={handleClose} />
                         </button>
                     )}
-                    {
-                        loading &&
-                        <FontAwesomeIcon className={cx('loading')} icon={faCircleNotch} />
-                    }
+                    {loading && <FontAwesomeIcon className={cx('loading')} icon={faCircleNotch} />}
                     <span className={cx('separate')}></span>
-                    <button 
-                        className={cx('search-btn')}
-                        onMouseDown={e => e.preventDefault()}
-                    >
+                    <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                         <SearchIcon />
                     </button>
                 </div>
