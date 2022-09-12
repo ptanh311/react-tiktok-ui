@@ -1,4 +1,4 @@
-import { get } from '~/utils/request';
+import { get } from '~/utils/httpRequest';
 
 const searchApi = async (querry, type = 'less') => {
     const result = await get('users/search', {

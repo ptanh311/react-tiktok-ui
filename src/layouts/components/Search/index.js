@@ -9,7 +9,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import styles from './Search.module.scss';
 import { CloseButton, SearchIcon } from '~/assets/image';
-import searchApi from '~/apiService/search';
+import searchApi from '~/services/searchService';
 
 const cx = classNames.bind(styles);
 
