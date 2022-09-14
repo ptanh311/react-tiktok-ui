@@ -1,0 +1,10 @@
+.separate-line {
+    width: 100%;
+    position: relative;
+}
+
+.separate-line::before {
+    content: "";
+    position: absolute;
+    top: 0;
+}

@@ -1,0 +1,62 @@
+.preview {
+    width: 320px;
+    padding: 20px;
+
+    .avatar-follow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+    }
+    
+    .avatar {
+        display: flex;
+        align-items: center;
+    }
+
+    .follow-btn {
+        padding: 8px 28px;
+    }
+
+    .interactive-info {
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        font-size: 1.7rem;
+    }
+}
+
+.interactive-info {
+    .followers {
+        margin-right: 16px;
+    }
+}
+
+.account-info {
+    display: flex;
+    flex-direction: column;
+
+    .name {
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+}
+
+.nickname {
+    display: flex;
+    align-items: center;
+
+    h4 {
+        margin-right: 6px;
+        font-family: SofiaPro, sans-serif;
+        font-size: 1.8rem;
+        line-height: 2rem;
+        font-weight: 700;
+    }
+
+    .check-icon {
+        color: #20d5ec;
+        width: 14px;
+        height: 14px;
+    }
+}

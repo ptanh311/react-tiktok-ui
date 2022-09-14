@@ -30,6 +30,7 @@
     --black: #000;
     --white: #fff;
     --text-color: #161823;
+    --text-color-lighter: #161823BF;
     // Default Layout
     --default-layout-header-height: 60px;
     --default-layout-width-content: 1150px;
@@ -45,6 +46,7 @@
 
 html {
     font-size: 62.5%;
+    color: var(--text-color);
 }
 
 // Scrollbar

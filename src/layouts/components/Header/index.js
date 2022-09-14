@@ -134,7 +134,7 @@ function Header() {
                             <Image
                                 className={cx('user-img')}
                                 alt={currentUser}
-                                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/7065656918387195931~c5_720x720.jpeg?x-expires=1662602400&x-signature=coYAdP4UMaSuInOgG9QnOT2lSmQ%3D"
+                                src="https://wallpapers.com/images/hd/anime-aesthetic-scenery-nyh1muccop6fpcr7.webp"
                                 fallback="https://article.innovadatabase.com/articleimgs/article_images/637112270486526354N-g1003e.jpeg"
                             />
                         ) : (
